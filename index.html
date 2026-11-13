@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Swati — Happy Birthday</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true">
+    <div class="glow glow-a"></div>
+    <div class="glow glow-b"></div>
+    <div class="petals" id="petals"></div>
+    <div class="hearts" id="hearts"></div>
+  </div>
+
+  <!-- Stage 1: Envelope -->
+  <section class="stage stage-envelope is-active" id="stage-envelope" aria-label="Birthday envelope">
+    <p class="whisper">A little something for you</p>
+    <h1 class="name">Swati</h1>
+    <p class="love-names">Bae <span>&hearts;</span> My Girl <span>&hearts;</span> My Love</p>
+    <p class="invite">Tap the envelope to open your birthday wish</p>
+
+    <button class="envelope" id="envelope" type="button" aria-label="Open birthday envelope">
+      <span class="envelope__flap"></span>
+      <span class="envelope__body">
+        <span class="envelope__seal">S</span>
+      </span>
+      <span class="envelope__letter-peek"></span>
+    </button>
+  </section>
+
+  <!-- Stage 2: Closed card -->
+  <section class="stage stage-card" id="stage-card" aria-label="Birthday card" hidden>
+    <p class="whisper">For the one I will always remember</p>
+    <button class="card" id="card" type="button" aria-label="Open the birthday card">
+      <span class="card__front">
+        <span class="card__ornament" aria-hidden="true"></span>
+        <span class="card__title">Happy Birthday</span>
+        <span class="card__name">Swati</span>
+        <span class="love-names">Bae <span>&hearts;</span> My Girl <span>&hearts;</span> My Love</span>
+        <span class="card__hint">Click to open</span>
+      </span>
+    </button>
+  </section>
+
+  <!-- Stage 3: Cake -->
+  <section class="stage stage-cake" id="stage-cake" aria-label="Birthday cake" hidden>
+    <div class="cake-card">
+      <div class="cake-card__hearts" aria-hidden="true">
+        <span class="mini-heart"></span>
+        <span class="mini-heart mini-heart--big"></span>
+        <span class="mini-heart"></span>
+      </div>
+      <p class="wishes__eyebrow">My dearest Swati</p>
+      <h2 class="wishes__headline">Happy Birthday</h2>
+      <p class="love-names love-names--small">Bae <span>&hearts;</span> My Girl <span>&hearts;</span> My Love</p>
+      <div class="cake-scene">
+        <p class="cake-note" id="cake-note">Make a wish, then cut the cake</p>
+        <div class="cake" id="cake">
+          <div class="candles" aria-hidden="true">
+            <span class="candle candle--1"><span class="flame"></span></span>
+            <span class="candle candle--2"><span class="flame"></span></span>
+            <span class="candle candle--3"><span class="flame"></span></span>
+            <span class="candle candle--4"><span class="flame"></span></span>
+            <span class="candle candle--5"><span class="flame"></span></span>
+          </div>
+          <span class="knife" aria-hidden="true"></span>
+          <span class="knife knife--two" aria-hidden="true"></span>
+          <span class="cake__frost"></span>
+          <span class="cake__layer cake__layer--top"></span>
+          <span class="cake__layer cake__layer--mid"></span>
+          <span class="cake__layer cake__layer--base"></span>
+          <span class="cake__slice" aria-hidden="true"></span>
+          <span class="cake__slice cake__slice--two" aria-hidden="true"></span>
+          <span class="cake__plate"></span>
+        </div>
+        <button type="button" class="cut-cake" id="cut-cake">Cut the cake</button>
+        <button type="button" class="cut-cake next-btn" id="to-photos" hidden>A walk down our lane</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stage 4: Photos and wishes -->
+  <section class="stage stage-wishes" id="stage-wishes" aria-label="Birthday wishes" hidden>
+    <div class="wishes">
+      <p class="wishes__eyebrow">Some of my favourite moments</p>
+      <h2 class="wishes__headline">With You</h2>
+
+      <div class="photos">
+        <figure class="photo-frame photo-frame--one">
+          <img src="imageone.jpeg" alt="Us, photo one" />
+        </figure>
+        <figure class="photo-frame photo-frame--two">
+          <img src="imagetwo.jpeg" alt="Us, photo two" />
+        </figure>
+        <figure class="photo-frame photo-frame--three">
+          <img src="imagethree.jpeg" alt="Us, photo three" />
+        </figure>
+      </div>
+
+      <p class="wishes__message" id="wish-text"></p>
+
+      <div class="wish-buttons" id="wish-buttons" role="group" aria-label="More wishes">
+        <button type="button" data-wish="0" class="wish-btn is-active">My strength</button>
+        <button type="button" data-wish="1" class="wish-btn">Your kind heart</button>
+        <button type="button" data-wish="2" class="wish-btn">Grow in life</button>
+        <button type="button" data-wish="3" class="wish-btn">Always you</button>
+      </div>
+
+      <button type="button" class="replay" id="replay">Open again</button>
+    </div>
+  </section>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>

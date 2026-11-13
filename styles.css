@@ -135,6 +135,78 @@ button {
   animation: nameFloat 4.5s ease-in-out infinite;
 }
 
+[hidden] {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.wish-card .wishes__headline {
+  margin-bottom: 0.6rem;
+}
+
+.wish-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.wish-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(143, 61, 86, 0.28);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  color: var(--ink);
+  resize: vertical;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wish-form textarea:focus {
+  outline: none;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(196, 92, 122, 0.18);
+}
+
+.wish-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.cut-cake--outline {
+  background: transparent;
+  border: 1px solid var(--rose-deep);
+  color: var(--rose-deep);
+}
+
+.wish-status {
+  min-height: 1.2em;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--rose-deep);
+}
+
+.wish-thanks {
+  padding: 1rem 0 0.4rem;
+  animation: nextIn 0.6s var(--ease) both;
+}
+
+.wish-card .replay {
+  margin-top: 1rem;
+}
+
 .love-names {
   display: block;
   margin: -0.9rem 0 1.6rem;

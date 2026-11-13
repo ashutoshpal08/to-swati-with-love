@@ -111,6 +111,37 @@
         <button type="button" data-wish="3" class="wish-btn">Always you</button>
       </div>
 
+      <button type="button" class="cut-cake next-btn" id="to-her-wish">Now, your wish</button>
+    </div>
+  </section>
+
+  <!-- Stage 5: Her wish -->
+  <section class="stage stage-her-wish" id="stage-her-wish" aria-label="Make a wish" hidden>
+    <div class="cake-card wish-card">
+      <div class="cake-card__hearts" aria-hidden="true">
+        <span class="mini-heart"></span>
+        <span class="mini-heart mini-heart--big"></span>
+        <span class="mini-heart"></span>
+      </div>
+      <p class="wishes__eyebrow">Your turn, my love</p>
+      <h2 class="wishes__headline">Make a Wish</h2>
+
+      <form class="wish-form" id="wish-form">
+        <p class="cake-note">Tell me your birthday wish, anything at all, and I will do my best to make it come true.</p>
+        <label class="visually-hidden" for="her-wish">Your wish</label>
+        <textarea id="her-wish" name="wish" rows="5" maxlength="1000" placeholder="I wish..." required></textarea>
+        <div class="wish-actions">
+          <button type="submit" class="cut-cake" id="send-email">Send it to him</button>
+          <button type="button" class="cut-cake cut-cake--outline" id="send-whatsapp">Send on WhatsApp</button>
+        </div>
+        <p class="wish-status" id="wish-status" aria-live="polite"></p>
+      </form>
+
+      <div class="wish-thanks" id="wish-thanks" hidden>
+        <p class="love-names love-names--small">Wish received <span>&hearts;</span></p>
+        <p class="cake-note">Consider it written in the stars, bae. Happy birthday.</p>
+      </div>
+
       <button type="button" class="replay" id="replay">Open again</button>
     </div>
   </section>

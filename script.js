@@ -1,4 +1,10 @@
 (() => {
+  // whatsapp: country code + number, digits only (e.g. "919876543210"). Leave "" to hide that button.
+  const SEND_TO = {
+    email: "",
+    whatsapp: "919328899868",
+  };
+
   const wishes = [
     "Happy birthday, Swati. You are my comfort — and more than that, you are my confidence and my strength. Because of you, I stand a little taller.",
     "Your innocence and kind heart make you rare. You have done so much for me — more than I can ever put into words — and I will always be grateful.",
@@ -11,6 +17,14 @@
   const cakeStage = document.getElementById("stage-cake");
   const toPhotos = document.getElementById("to-photos");
   const wishesStage = document.getElementById("stage-wishes");
+  const herWishStage = document.getElementById("stage-her-wish");
+  const toHerWish = document.getElementById("to-her-wish");
+  const wishForm = document.getElementById("wish-form");
+  const herWish = document.getElementById("her-wish");
+  const sendEmail = document.getElementById("send-email");
+  const sendWhatsapp = document.getElementById("send-whatsapp");
+  const wishStatus = document.getElementById("wish-status");
+  const wishThanks = document.getElementById("wish-thanks");
   const envelope = document.getElementById("envelope");
   const card = document.getElementById("card");
   const wishText = document.getElementById("wish-text");
@@ -30,7 +44,7 @@
   let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function showStage(active) {
-    [envelopeStage, cardStage, cakeStage, wishesStage].forEach((stage) => {
+    [envelopeStage, cardStage, cakeStage, wishesStage, herWishStage].forEach((stage) => {
       const isActive = stage === active;
       stage.hidden = !isActive;
       stage.classList.toggle("is-active", isActive);
@@ -226,10 +240,79 @@
     }, step * 4.4);
   });
 
+  function resetHerWish() {
+    wishForm.hidden = false;
+    wishThanks.hidden = true;
+    wishStatus.textContent = "";
+    sendEmail.disabled = false;
+    herWish.value = "";
+  }
+
+  function wishReceived() {
+    wishForm.hidden = true;
+    wishThanks.hidden = false;
+    burstConfetti();
+  }
+
+  toHerWish.addEventListener("click", () => {
+    showStage(herWishStage);
+    window.scrollTo(0, 0);
+    herWish.focus();
+  });
+
+  wishForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const wish = herWish.value.trim();
+    if (!wish) return;
+
+    if (!SEND_TO.email) {
+      wishStatus.textContent = "Email is not set up yet, try WhatsApp instead.";
+      return;
+    }
+
+    sendEmail.disabled = true;
+    wishStatus.textContent = "Sending your wish...";
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${SEND_TO.email}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: "Swati",
+          wish,
+          _subject: "Swati's birthday wish",
+          _template: "box",
+          _captcha: "false",
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      wishReceived();
+    } catch {
+      sendEmail.disabled = false;
+      wishStatus.textContent = SEND_TO.whatsapp
+        ? "Could not send by email, please try WhatsApp."
+        : "Could not send right now, please try again.";
+    }
+  });
+
+  if (!SEND_TO.whatsapp) sendWhatsapp.hidden = true;
+  if (!SEND_TO.email && SEND_TO.whatsapp) sendEmail.hidden = true;
+
+  sendWhatsapp.addEventListener("click", () => {
+    const wish = herWish.value.trim();
+    if (!wish) {
+      herWish.reportValidity();
+      return;
+    }
+    const text = `My birthday wish: ${wish}`;
+    window.open(`https://wa.me/${SEND_TO.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
+    wishReceived();
+  });
+
   replay.addEventListener("click", () => {
     clearTimeout(typingTimer);
     wishText.textContent = "";
     resetCake();
+    resetHerWish();
     showStage(envelopeStage);
   });
 
